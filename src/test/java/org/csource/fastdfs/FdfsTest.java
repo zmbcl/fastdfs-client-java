@@ -19,7 +19,7 @@ public class FdfsTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FdfsTest.class);
 
-    private static final String CONF_NAME = "fdfstest.conf";
+    private static final String CONF_NAME = "fdfs_client.conf";
 
     private StorageClient storageClient;
 
@@ -73,9 +73,9 @@ public class FdfsTest {
     @Test
     public void upload() throws Exception{
         NameValuePair[] metaList = new NameValuePair[1];
-        String local_filename = "build.PNG";
+        String local_filename = "nnn.jpg";
         metaList[0] = new NameValuePair("fileName", local_filename);
-        File file = new File("C:/Users/chengdu/Desktop/build.PNG");
+        File file = new File("/Users/bcl/study/source_code/fastdfs-client-java/src/test/resources/nnn.jpg");
         InputStream inputStream = new FileInputStream(file);
         int length = inputStream.available();
         byte[] bytes = new byte[length];
@@ -87,9 +87,9 @@ public class FdfsTest {
 
     @Test
     public void download() throws Exception {
-        String[] uploadresult = {"group1", "M00/00/00/wKgBZV0phl2ASV1nAACk1tFxwrM3814331"};
+        String[] uploadresult = {"group1", "M00/00/00/wKjEhF7kcN2AIy2QAAQkAyGT6x04966292"};
         byte[] result = storageClient.download_file(uploadresult[0], uploadresult[1]);
-        String local_filename = "build.PNG";
+        String local_filename = "nnn.PNG";
         writeByteToFile(result, local_filename);
         File file = new File(local_filename);
         Assert.assertTrue(file.isFile());
